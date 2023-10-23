@@ -11,6 +11,7 @@ public class Test {
 
 	public static void main(String[] args) {
         // For now, all code goes in here
-        System.out.println("Hello World!");
+        System.out.println("Hello World from John!");
 	}
 }
+
