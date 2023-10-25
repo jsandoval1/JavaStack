@@ -7,17 +7,17 @@ public class Order {
     private String name; // default value of null
     private double total; // Initialize total to 0
     private boolean ready; // default value of false
-    private ArrayList<Item> items; // defaults to null
+    private ArrayList<Item> items; // defaults to null, Array list of //*Item* objects
 
     // CONSTRUCTOR
-    // No arguments, sets name to "Guest", initializes items as an empty list.
+    // No arguments, Uses this constructor, sets name to "Guest", initializes items as an empty list.
     public Order() {
         this.name = "Guest";
         this.items = new ArrayList<Item>();
     }
 
     // OVERLOADED CONSTRUCTOR
-    // Takes a name as an argument, sets name to this custom name.
+    // When a name is as an argument, sets name to this custom name.
     // Initializes items as an empty list.
     public Order(String name) {
         this.name = name;
@@ -25,26 +25,31 @@ public class Order {
     }
 
     // ORDER METHODS
+    // Allows you to add an Item object to the Array items list of the order.
     public void addItem(Item item) {
-        items.add(item);
+        items.add(item); //Passes Item objects created in the MainTest to the array items
     }
 
+    // If the ready flag is true, it says that the order is ready with the customer's name. 
+    // If ready is false, it says that the order will be ready soon with the customer's name.
     public String getStatusMessage() {
         if (this.ready) {
-            return this.name + "'s order is ready. \n \n";
+            return this.name + "'s order is ready. \n \n"; 
         }
         return "Thank you for waiting, " + this.name + "'s order will be ready soon. \n \n";
     }
 
+    //  Iterates through the items list, adding up the prices of each item to calculate the total cost.
     public double getOrderTotal() {
-        double total = 0; // Initialize the total to 0
-        for (Item item : items) {
-            total += item.getPrice();
+        double total = 0; 
+        for (Item item : items) { // loops through item array
+            total += item.getPrice(); // getPrice method from Item Class
         }
         return total;
     }
     
 
+    // Displays the customer's name, lists the items and their prices, and shows the total cost of the order.
     public void display() {
         System.out.println("Customer Name: " + this.name);
         for (Item item : items) {
