@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-import java.util.Arrays;
+// import java.util.Arrays;
 public class TestCafe {
     public static void main(String[] args) {
         
@@ -10,30 +10,33 @@ public class TestCafe {
     */
     // ! Create instance and variable of Cafe Util
         CafeUtil appTest = new CafeUtil();
+
         /* ============ App Test Cases ============= */
-    
+
         System.out.println("\n----- Streak Goal Test -----");
-        System.out.printf("Purchases needed by week 10: %s \n\n", appTest.getStreakGoal());
+            System.out.printf("Purchases needed by week %d: %d \n\n", 10, appTest.getStreakGoal(10));
+
     
         System.out.println("----- Order Total Test-----");
-        double[] lineItems = {3.5, 1.5, 4.0, 4.5};
-        System.out.printf("Order total: %s \n\n",appTest.getOrderTotal(lineItems));
+        //! Does not matter what this array is called, just know it is being passed 
+        //! in through the "prices" parameter
+            double[] lineItems = {3.5, 1.5, 4.0, 4.5}; 
+            System.out.printf("Order total: %s \n\n",appTest.getOrderTotal(lineItems));
         
         System.out.println("----- Display Menu Test-----");
-        
-        ArrayList<String> menu = new ArrayList<String>();
-        menu.add("drip coffee");
-        menu.add("cappuccino");
-        menu.add("latte");
-        menu.add("mocha");
-        appTest.displayMenu(menu);
+            ArrayList<String> menu = new ArrayList<String>(); //! New array list named menu is created to store the items
+            menu.add("drip coffee"); //! Adds the string "drip coffee" to the menu ArrayList. 
+            menu.add("cappuccino");
+            menu.add("latte");
+            menu.add("mocha");
+            appTest.displayMenu(menu); //! Calls the displayMenu method and passes the menu ArrayList as an argument.
     
         System.out.println("\n----- Add Customer Test-----");
-        ArrayList<String> customers = new ArrayList<String>();
-        // --- Test 4 times ---
-        for (int i = 0; i < 4; i++) {
-            appTest.addCustomer(customers);
-            System.out.println("\n");
+            ArrayList<String> customers = new ArrayList<String>(); //! New array list named customers is created to store the items
+            // --- Test 4 times ---
+            for (int i = 0; i < 4; i++) {
+                appTest.addCustomer(customers);
+                System.out.println("\n");
         }
     }
 }
