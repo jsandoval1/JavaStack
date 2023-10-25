@@ -5,7 +5,7 @@ public class Order {
 
     // MEMBER VARIABLES
     private String name; // default value of null
-    private double total; //! Defaults to 0?
+    private double total; // Initialize total to 0
     private boolean ready; // default value of false
     private ArrayList<Item> items; // defaults to null
 
@@ -31,25 +31,26 @@ public class Order {
 
     public String getStatusMessage() {
         if (this.ready) {
-            return "Your order is ready.";
+            return this.name + "'s order is ready. \n \n";
         }
-        return "Thank you for waiting, your order will be ready soon.";
+        return "Thank you for waiting, " + this.name + "'s order will be ready soon. \n \n";
     }
 
     public double getOrderTotal() {
-        double total = 0;
+        double total = 0; // Initialize the total to 0
         for (Item item : items) {
             total += item.getPrice();
         }
         return total;
     }
+    
 
     public void display() {
         System.out.println("Customer Name: " + this.name);
         for (Item item : items) {
-            System.out.println(item.getName() + " - $" + item.getPrice());
+            System.out.println(item.getName() + " is $" + item.getPrice());
         }
-        System.out.println("Total: $" + getOrderTotal());
+        System.out.println("Total: $" + getOrderTotal() + "\n \n");
     }
 
     // GETTERS & SETTERS
