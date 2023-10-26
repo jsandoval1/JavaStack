@@ -1,5 +1,5 @@
 public class BankAccount {
-    // MEMBER VARIABLES
+    //! MEMBER VARIABLES
     private double checkingBalance;
     private double savingsBalance;
 
