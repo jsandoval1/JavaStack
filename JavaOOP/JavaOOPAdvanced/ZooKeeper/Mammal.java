@@ -14,8 +14,14 @@ public class Mammal {
     }
 
     // METHODS
-    public void displayEnergy() {
-        System.out.println("Energy Level: " + energy);
+    // ? Basic way of doing it
+    // public void displayEnergy() {
+    //     System.out.println("Energy Level: " + energy);
+    // }
+
+    // *Better way of doing it to print mammal type when testing
+    public void displayEnergy(String mammalType) {
+        System.out.println(mammalType + " Energy Level: " + energy);
     }
 
     // GETTERS & SETTERS
