@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-DaikichiroutesApplication<daikichiroutes>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "sandoval.john.daikichiroutes.DaikichiroutesApplication",
+            "projectName": "daikichiroutes",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
