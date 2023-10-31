@@ -1,0 +1,26 @@
+body {
+    font-family: Arial;
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
+p {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+a {
+    text-decoration: none;
+    color: orange;
+    margin-top: 20px;
+    display: block;
+}
+
+.fortune-box {
+    width: 40%; 
+    margin: 0 auto; 
+    background-color: black;
+    padding: 10px;
+    border-radius: 10px;
+}
