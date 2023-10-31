@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-HoppersReceiptApplication<hoppersreceipt>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "sandoval.john.hoppersreceipt.HoppersReceiptApplication",
+            "projectName": "hoppersreceipt",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
