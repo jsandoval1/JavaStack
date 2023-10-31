@@ -1,0 +1,30 @@
+/* Center the container horizontally on the page */
+.container {
+    text-align: center;
+    font-family: 'Comic Sans MS', cursive;
+}
+
+table {
+    margin: 0 auto;
+    width: 70%;
+}
+
+table th {
+    background-color: orange;
+    color: black;
+    font-weight: bold;
+    padding: 8px;
+}
+
+/* Style the table data rows alternately for better readability */
+table tr:nth-child(even) {
+    background-color: lightgray;
+}
+
+table tr:nth-child(odd) {
+    background-color: white;
+}
+
+table td {
+    padding: 8px;
+}
