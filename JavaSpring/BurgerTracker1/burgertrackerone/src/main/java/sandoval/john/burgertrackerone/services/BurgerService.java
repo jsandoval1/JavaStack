@@ -16,7 +16,7 @@ import sandoval.john.burgertrackerone.repositories.BurgerRepository;
 @Service
 public class BurgerService {
 
-    private final BurgerRepository burgerRepository;
+    private BurgerRepository burgerRepository;
 
     // Constructor for the BurgerService class with the BurgerRepository
     BurgerService(BurgerRepository burgerRepository) {

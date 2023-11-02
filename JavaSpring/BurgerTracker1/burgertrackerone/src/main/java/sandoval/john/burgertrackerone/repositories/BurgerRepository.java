@@ -13,14 +13,14 @@ public interface BurgerRepository extends CrudRepository<Burger, Long> {
     // Method to retrieve all burgers from the database
     List<Burger> findAll();
 
-    // Method to find burgers with containing the search string
-    List<Burger> findByBurgerNameContaining(String search);
+    // // Method to find burgers with containing the search string
+    // List<Burger> findByBurgerNameContaining(String search);
 
-    // Method to count how many burgers contain a certain string
-    Long countByBurgerNameContaining(String search);
+    // // Method to count how many burgers contain a certain string
+    // Long countByBurgerNameContaining(String search);
 
-    // Method to delete a burger that contains the search string
-    Long deleteByBurgerNameContaining(String search);
+    // // Method to delete a burger that contains the search string
+    // Long deleteByBurgerNameContaining(String search);
 
 }
 

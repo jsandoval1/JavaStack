@@ -37,8 +37,8 @@ public class Burger {
     private String restaurantName;
 
     @NotNull
-    @Min(1)
-    @Max(5)
+    @Min(value = 1, message = "Rating must be at least 1")
+    @Max(value = 5, message = "Rating must be at most 5")    
     private int rating;
 
     @Column(updatable = false)
@@ -52,7 +52,7 @@ public class Burger {
     public Burger() {
     }
 
-    // * Constructor with all fields passed in as parameters
+    // * Constructor with all NEEDED fields passed in as parameters, id, created at, and updated at are not required
     public Burger(String burgerName, String restaurantName, int rating) {
         this.burgerName = burgerName;
         this.restaurantName = restaurantName;
@@ -121,6 +121,7 @@ public class Burger {
                 "}";
     }
 
+    //* PrePersist and PreUpdate methods to set the createdAt and updatedAt fields
     @PrePersist
     protected void onCreate() {
         this.createdAt = new Date();

@@ -9,79 +9,8 @@
                 <head>
                     <meta charset="UTF-8" />
                     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                    <link rel="stylesheet" type="text/css" href=css/ViewAllBurgers.css />
                     <title>Burgers</title>
-                    <style>
-                        body {
-                            background-color: black;
-                            color: white;
-                            font-family: Arial, sans-serif;
-                            text-align: center;
-                        }
-
-                        table {
-                            width: 80%;
-                            border-collapse: collapse;
-                            margin: 20px auto;
-                        }
-
-                        th,
-                        td {
-                            border: 1px solid grey;
-                            padding: 8px;
-                            text-align: left;
-                        }
-
-                        th {
-                            background-color: #444;
-                        }
-
-                        h1 {
-                            color: goldenrod;
-                        }
-
-                        form {
-                            margin: 20px auto;
-                            max-width: 400px;
-                            padding: 20px;
-                            background-color: #444;
-                            border: 1px solid slategray;
-                            border-radius: 5px;
-                            text-align: left;
-                        }
-
-                        label {
-                            color: goldenrod;
-                            display: block;
-                            margin-top: 10px;
-                        }
-
-                        input[type="text"],
-                        input[type="number"] {
-                            width: 95%;
-                            padding: 10px;
-                            margin-top: 5px;
-                            border: 1px solid #444;
-                            border-radius: 5px;
-                            background-color: black;
-                            color: #fff;
-                        }
-
-                        button[type="submit"] {
-                            background-color: goldenrod;
-                            color: black;
-                            padding: 10px 20px;
-                            border: none;
-                            border-radius: 5px;
-                            cursor: pointer;
-                            margin-top: 15px;
-                        }
-
-                        .error {
-                            font: Verdana;
-                            font-size: 12px;
-                            color: red;
-                        }
-                    </style>
                 </head>
 
                 <body>
@@ -106,11 +35,12 @@
                             </c:forEach>
                         </tbody>
                     </table>
+                    <h2>Add a Burger</h2>
+                    <form:form modelAttribute="burger" method="post" action="/burgers"> <!-- Parent modelAttribute is burger -->
 
-                    <form:form modelAttribute="burger" method="post" action="/burgers">
-                        <label for="burgerName">Burger Name:</label>
-                        <form:input path="burgerName" id="burgerName" required="true" />
-                        <form:errors path="burgerName" cssClass="error" />
+                        <label for="burgerName">Burger Name:</label> <!-- Display a label with the text "Burger Name" -->
+                        <form:input path="burgerName" id="burgerName" required="true" /> <!-- Create an input field for "burgerName" and associate it with the "burgerName" attribute in the model.-->
+                        <form:errors path="burgerName" cssClass="error" /> <!-- If there are validation errors for the "burgerName" field, styled them using the "error" CSS class. -->
 
                         <label for="restaurantName">Restaurant:</label>
                         <form:input path="restaurantName" id="restaurantName" required="true" />
