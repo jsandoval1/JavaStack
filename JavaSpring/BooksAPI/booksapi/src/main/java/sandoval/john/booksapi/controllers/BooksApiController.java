@@ -31,6 +31,7 @@ public class BooksApiController {
     @RequestMapping(value = "/api/books", method = RequestMethod.POST)
     public Book create(@RequestParam(value = "title") String title, @RequestParam(value = "description") String desc,
                         @RequestParam(value = "language") String lang, @RequestParam(value = "pages") Integer numOfPages) {
+                            System.out.println(title);
         // Create a new book and use the service to save it
         Book book = new Book(title, desc, lang, numOfPages);
         return bookService.createBook(book);

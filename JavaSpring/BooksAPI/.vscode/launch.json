@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-BooksapiApplication<booksapi>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "sandoval.john.booksapi.BooksapiApplication",
+            "projectName": "booksapi",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
