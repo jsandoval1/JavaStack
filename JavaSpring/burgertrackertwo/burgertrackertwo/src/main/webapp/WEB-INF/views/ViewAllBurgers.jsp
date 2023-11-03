@@ -31,24 +31,32 @@
                                     <td>${burger.id}</td>
                                     <td><a href="/burgers/${burger.id}">${burger.burgerName}</a></td>
                                     <td>${burger.restaurantName}</td>
-                                    <td>${burger.rating}</td> <!-- Button to edit the burger -->
-                                    <td><a href="/burgers/${burger.id}/edit">Edit</a></td>
+                                    <td>${burger.rating}</td>
                                     <td>
-                                        <form method="POST" action="/burgers/${burger.id}/delete"> <!-- Button to delete the burger -->
-                                            <input type="hidden" name="_method" value="DELETE"> <!-- Hidden input field to delete the burger because browser only knows get&post -->
-                                            <button type="submit">Delete</button>
-                                        </form>
+                                        <div class="actions-container"> <!-- Container for both buttons -->
+                                            <a href="/burgers/${burger.id}/edit" id="action-button"
+                                                style="margin-right: 10px;">Edit</a>
+                                            <form method="POST" action="/burgers/${burger.id}/delete">
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                <button type="submit" id="action-button">Delete</button>
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                             </c:forEach>
+
                         </tbody>
                     </table>
                     <h2>Add a Burger</h2>
-                    <form:form modelAttribute="burger" method="post" action="/burgers"> <!-- Parent modelAttribute is burger -->
+                    <form:form modelAttribute="burger" method="post" action="/burgers" class="burger-form">
+                        <!-- Parent modelAttribute is burger -->
 
-                        <label for="burgerName">Burger Name:</label> <!-- Display a label with the text "Burger Name" -->
-                        <form:input path="burgerName" id="burgerName" required="true" /> <!-- Create an input field for "burgerName" and associate it with the "burgerName" attribute in the model.-->
-                        <form:errors path="burgerName" cssClass="error" /> <!-- If there are validation errors for the "burgerName" field, styled them using the "error" CSS class. -->
+                        <label for="burgerName">Burger Name:</label>
+                        <!-- Display a label with the text "Burger Name" -->
+                        <form:input path="burgerName" id="burgerName" required="true" />
+                        <!-- Create an input field for "burgerName" and associate it with the "burgerName" attribute in the model.-->
+                        <form:errors path="burgerName" cssClass="error" />
+                        <!-- If there are validation errors for the "burgerName" field, styled them using the "error" CSS class. -->
 
                         <label for="restaurantName">Restaurant:</label>
                         <form:input path="restaurantName" id="restaurantName" required="true" />

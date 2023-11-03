@@ -1,0 +1,86 @@
+body {
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+table {
+    width: 80%;
+    border-collapse: collapse;
+    margin: 20px auto;
+}
+
+th,
+td {
+    border: 1px solid grey;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #444;
+}
+
+h1, h2 {
+    color: goldenrod;
+}
+
+.burger-form {
+    margin: 20px auto;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #444;
+    border: 1px solid slategray;
+    border-radius: 5px;
+    text-align: left;
+}
+
+label {
+    color: goldenrod;
+    display: block;
+    margin-top: 10px;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 95%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background-color: black;
+    color: #fff;
+}
+
+button[type="submit"] {
+    background-color: goldenrod;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.error {
+    font: Verdana;
+    font-size: 12px;
+    font-weight: 600;
+    color: red;
+}
+
+#action-button {
+    background: none;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    color: blue; 
+    text-decoration: underline;
+    padding: 0;
+    margin: 0;
+}
+
+#action-button:hover {
+color: lightblue;
+}
