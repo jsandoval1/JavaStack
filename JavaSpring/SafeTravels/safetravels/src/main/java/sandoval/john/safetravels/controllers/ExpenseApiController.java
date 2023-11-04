@@ -31,7 +31,7 @@ public class ExpenseApiController {
     // Handle GET request to retrieve an expense from the database using the PathVariable
     @GetMapping("/api/expenses/{id}")
     public Expense getExpenseById(@PathVariable long id) {
-        return expenseService.findById(id);
+        return expenseService.findExpense(id);
     }
 
     // Handle POST request to save an expense to the database
