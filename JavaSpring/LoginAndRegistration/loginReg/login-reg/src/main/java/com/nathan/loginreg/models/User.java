@@ -30,16 +30,18 @@ public class User {
     @Size(min = 8, max = 128, message = "Password must be between 8 and 128 characters")
     private String password;
 
+    // * We use @Transient here because we do not want the password to be stored in
+    // * the database
     @Transient
     @NotEmpty(message = "Confirm Password is required!")
     @Size(min = 8, max = 128, message = "Confirm Password must be between 8 and 128 characters")
     private String confirm;
 
+    // * Empty Constructor
     public User() {
     }
 
-    // - Don't forget to generate getters and setters
-
+    // * Getter and Setters
     public Long getId() {
         return this.id;
     }

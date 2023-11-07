@@ -1,8 +1,14 @@
 package com.nathan.loginreg.models;
 
+// ! This file is used to to authenticate a user. 
+// ? Similarly to @transient, we do not want this to be stored in the database.
+// ? We wil use this class using <Form:helper> tags to validate the user input, similairly to the @Valid annotation <Form:error> tags.
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
+
+// ? Not marked as @Entity because we do not want a loginuser object to be stored in the database
 
 public class LoginUser {
 
@@ -13,12 +19,12 @@ public class LoginUser {
     @NotEmpty(message = "Password is required!")
     @Size(min = 8, max = 128, message = "Password must be between 8 and 128 characters")
     private String password;
-
+    
+    // * Empty Constructor
     public LoginUser() {
     }
-
-    // - Don't forget to generate getters and setters
-
+    
+    // * Getter and Setters
     public String getEmail() {
         return this.email;
     }
@@ -35,3 +41,8 @@ public class LoginUser {
         this.password = password;
     }
 }
+
+    //! Although we still will utilize validation constraints, it's a bit more like
+    //! a plain old OOP Java class. It is not an entity in our database, and we only
+    //! use it temporarily to validate the form input when the user logs in.
+    // * After form input passes or doesn't pass validation and authentication, that LoginUser instance disappears.

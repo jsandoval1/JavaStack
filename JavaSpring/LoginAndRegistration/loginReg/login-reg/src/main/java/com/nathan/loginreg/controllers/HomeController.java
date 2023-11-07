@@ -16,73 +16,51 @@ import jakarta.validation.Valid;
 
 @Controller
 public class HomeController {
-    // Add once service is implemented:
+
     @Autowired
     private UserService userService;
 
     @GetMapping("/")
-    public String index(Model model) {
-
-        // Bind empty User and LoginUser objects to the JSP
-        // to capture the form input
+    public String index(Model model) { // Bind empty User and LoginUser objects to the JSP to capture the form input
         model.addAttribute("newUser", new User());
         model.addAttribute("newLogin", new LoginUser());
-        return "index.jsp";
+        return "index";
     }
 
-    @PostMapping("/register")
-    public String register(@Valid @ModelAttribute("newUser") User newUser,
-            BindingResult result, Model model, HttpSession session) {
-
-        // TO-DO Later -- call a register method in the service
-        // to do some extra validations and create a new user!
-
+    @PostMapping("/register") // Action method of the register form
+    public String register(@Valid @ModelAttribute("newUser") User newUser, BindingResult result, Model model, HttpSession session) {
         User user = userService.register(newUser, result);
-        if (result.hasErrors()) {
-            // Be sure to send in the empty LoginUser before
-            // re-rendering the page.
+        if (result.hasErrors()) { // ! If errors are found, redirect to the index page and display form errors
             model.addAttribute("newLogin", new LoginUser());
-            return "index.jsp";
-        }
-
-        // No errors!
-        // TO-DO Later: Store their ID from the DB in session,
-        // in other words, log them in.
-        session.setAttribute("userId", user.getId());
-        session.setAttribute("user", user);
-
+            return "index";
+        } // * No errors!
+        session.setAttribute("userId", user.getId()); // Store their ID from the DB in session,
+        session.setAttribute("user", user); // in other words, log them in.
         return "redirect:/home";
     }
 
     @PostMapping("/login")
-    public String login(@Valid @ModelAttribute("newLogin") LoginUser newLogin,
-            BindingResult result, Model model, HttpSession session) {
-
-        // Add once service is implemented:
+    public String login(@Valid @ModelAttribute("newLogin") LoginUser newLogin, BindingResult result, Model model, HttpSession session) {
         User user = userService.login(newLogin, result);
-
-        if (result.hasErrors() || user == null) {
+        if (result.hasErrors() || user == null) { // ! If errors are found, OR user is equal to null, direct to the index page and display form errors
             model.addAttribute("newUser", new User());
-            return "index.jsp";
+            return "index";
+        } else { // * No errors!
+            session.setAttribute("userId", user.getId());
+            session.setAttribute("user", user); // Store their ID from the DB in session, in other words, log them in.
+            return "redirect:/home";
         }
-
-        // No errors!
-        // TO-DO Later: Store their ID from the DB in session,
-        // in other words, log them in.
-        session.setAttribute("userId", user.getId());
-        session.setAttribute("user", user);
-        return "redirect:/home";
     }
 
-    @GetMapping("/home")
+    @GetMapping("/home") // Method to check if user is in session to access pages
     public String home(HttpSession session) {
         if (session.getAttribute("userId") == null) {
             return "redirect:/";
         }
-        return "home.jsp";
+        return "home";
     }
 
-    @GetMapping("/logout")
+    @GetMapping("/logout") // Logout method
     public String logout(HttpSession session) {
         session.invalidate();
         return "redirect:/";
