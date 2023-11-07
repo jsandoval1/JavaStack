@@ -104,6 +104,31 @@ public class User {
         this.confirm = confirm;
     }
 
+    public java.util.List<Book> getBooks() {
+        return this.books;
+    }
+
+    public void setBooks(java.util.List<Book> books) {
+        this.books = books;
+    }
+
+    public Date getCreatedAt() {
+        return this.createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return this.updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+
     // * PrePersist and PreUpdate methods to set the createdAt and updatedAt fields
     @PrePersist
     protected void onCreate() {
