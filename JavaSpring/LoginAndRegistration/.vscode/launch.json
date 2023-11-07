@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-LoginRegApplication<login-reg>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.nathan.loginreg.LoginRegApplication",
+            "projectName": "login-reg",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

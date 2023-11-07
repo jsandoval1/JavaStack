@@ -33,10 +33,11 @@ public class HomeController {
         if (result.hasErrors()) { // ! If errors are found, redirect to the index page and display form errors
             model.addAttribute("newLogin", new LoginUser());
             return "index";
-        } // * No errors!
-        session.setAttribute("userId", user.getId()); // Store their ID from the DB in session,
-        session.setAttribute("user", user); // in other words, log them in.
-        return "redirect:/home";
+        } else { // * No errors!
+            session.setAttribute("userId", user.getId()); // Store their ID from the DB in session,
+            session.setAttribute("user", user); // in other words, log them in.
+            return "redirect:/home";
+        }
     }
 
     @PostMapping("/login")

@@ -10,7 +10,7 @@
                         <meta charset="UTF-8">
                         <title>LogItIn!</title>
                         <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
-                        <link rel="stylesheet" href="/css/main.css"> change to match your file/naming structure
+                        <link rel="stylesheet" href="/css/main.css">
                         <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
                         <script type="text/javascript" src="/js/app.js"></script>
                     </head>
@@ -27,25 +27,25 @@
                                         <div class="mb-3">
                                             <form:label class="form-label" path="userName">user name</form:label>
                                             <form:input class="form-control" path="userName"></form:input>
-                                            <form:errors class="form-text text-warning" path="userName"></form:errors>
+                                            <form:errors class="form-text text-danger" path="userName"></form:errors>
                                         </div>
                                         <!--* Email field with label, input paths and errors -->
                                         <div class="mb-3">
                                             <form:label class="form-label" path="email">email</form:label>
                                             <form:input class="form-control" path="email"></form:input>
-                                            <form:errors class="form-text text-warning" path="email"></form:errors>
+                                            <form:errors class="form-text text-danger" path="email"></form:errors>
                                         </div>
                                         <!--* Password field with label, input paths and errors -->
                                         <div class="mb-3">
                                             <form:label class="form-label" path="password">password</form:label>
                                             <form:input class="form-control" path="password"></form:input>
-                                            <form:errors class="form-text text-warning" path="password"></form:errors>
+                                            <form:errors class="form-text text-danger" path="password"></form:errors>
                                         </div>
                                         <!--* Confirm password field with label, input paths and errors -->
                                         <div class="mb-3">
                                             <form:label class="form-label" path="confirm">confirm password</form:label>
                                             <form:input class="form-control" path="confirm"></form:input>
-                                            <form:errors class="form-text text-warning" path="confirm"></form:errors>
+                                            <form:errors class="form-text text-danger" path="confirm"></form:errors>
                                         </div>
                                         <input class="btn btn-primary" type="submit" value="register">
                                     </form:form>
@@ -60,13 +60,13 @@
                                         <div class="mb-3">
                                             <form:label class="form-label" path="email">email</form:label>
                                             <form:input class="form-control" path="email"></form:input>
-                                            <form:errors class="form-text text-warning" path="email"></form:errors>
+                                            <form:errors class="form-text text-danger" path="email"></form:errors>
                                         </div>
                                         <!--! Input to validate password using newLogin attribute -->
                                         <div class="mb-3">
                                             <form:label class="form-label" path="password">password</form:label>
                                             <form:input class="form-control" path="password"></form:input>
-                                            <form:errors class="form-text text-warning" path="password"></form:errors>
+                                            <form:errors class="form-text text-danger" path="password"></form:errors>
                                         </div>
                                         <input class="btn btn-primary" type="submit" value="login">
                                     </form:form>
