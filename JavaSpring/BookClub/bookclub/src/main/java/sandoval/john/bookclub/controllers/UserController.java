@@ -24,7 +24,7 @@ public class UserController {
     public String index(Model model) { // Bind empty User and LoginUser objects to the JSP to capture the form input
         model.addAttribute("newUser", new User());
         model.addAttribute("newLogin", new LoginUser());
-        return "index";
+        return "UserAuth";
     }
 
     @PostMapping("/register") // Action method of the register form
@@ -32,7 +32,7 @@ public class UserController {
         User user = userService.register(newUser, result);
         if (result.hasErrors()) { // ! If errors are found, redirect to the index page and display form errors
             model.addAttribute("newLogin", new LoginUser());
-            return "index";
+            return "UserAuth";
         } else { // * No errors!
             session.setAttribute("userId", user.getId()); // Store their ID from the DB in session,
             session.setAttribute("user", user); // in other words, log them in.
@@ -45,7 +45,7 @@ public class UserController {
         User user = userService.login(newLogin, result);
         if (result.hasErrors() || user == null) { // ! If errors are found, OR user is equal to null, direct to the index page and display form errors
             model.addAttribute("newUser", new User());
-            return "index";
+            return "UserAuth";
         } else { // * No errors!
             session.setAttribute("userId", user.getId());
             session.setAttribute("user", user); // Store their ID from the DB in session, in other words, log them in.
