@@ -1,5 +1,3 @@
-<!-- Index.jsp -->
-
 <!DOCTYPE html>
 <html lang="en">
 
