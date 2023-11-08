@@ -5,12 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import sandoval.john.bookclub.models.Book;
 import sandoval.john.bookclub.services.BookService;
 
@@ -50,9 +52,13 @@ public class BookController {
     }
 
     @PostMapping("/books/new")
-    public String createBook(@ModelAttribute Book book) {
-        bookService.createBook(book);
-        return "redirect:/books";
+    public String createBook(@Valid @ModelAttribute Book book, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) { // ! If has errors
+            return "CreateNewBook";
+        } else {
+            bookService.createBook(book); // * If no errors
+            return "redirect:/books";
+        }
     }
 
     // * Controller to display single book details
