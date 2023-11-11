@@ -4,12 +4,16 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import sandoval.john.letsdoit.models.Task;
 import sandoval.john.letsdoit.services.TaskService;
 
-@RestController("/api")
+@RestController
+@RequestMapping("/api")
 public class TaskApiController {
 
     // * Inject Task Service
@@ -18,9 +22,19 @@ public class TaskApiController {
 
     // * Route to get all tasks
     @GetMapping("/tasks")
-    public List<Task> index() {
+    public List<Task> getAllTasks() {
         return taskService.allTasks();
     }
 
-    
+    // * Route to get one task
+    @GetMapping("/tasks/{id}")
+    public Task getOneTask(@PathVariable Long id) {
+        return taskService.findTask(id);
+    }
+
+    // * Route to create a task
+    @PostMapping("/tasks/new")
+    public Task createTask(Task task) {
+        return taskService.createTask(task);
+    }
 }

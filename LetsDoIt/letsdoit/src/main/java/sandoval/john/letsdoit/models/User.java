@@ -140,8 +140,6 @@ public class User {
         this.updatedAt = updatedAt;
     }
 
-
-
     // * PrePersist and PreUpdate methods to set the createdAt and updatedAt fields
     @PrePersist
     protected void onCreate() {

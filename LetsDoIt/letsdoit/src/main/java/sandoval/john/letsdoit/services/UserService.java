@@ -1,6 +1,5 @@
 package sandoval.john.letsdoit.services;
 
-
 import java.util.Optional;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -11,7 +10,7 @@ import org.springframework.validation.BindingResult;
 import sandoval.john.letsdoit.models.LoginCheck;
 import sandoval.john.letsdoit.models.User;
 import sandoval.john.letsdoit.repositories.UserRepository;
-
+import java.util.List;
 
 @Service
 public class UserService {
@@ -19,9 +18,10 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    // * user Register method: 
+    // * user Register method:
     public User register(User newUser, BindingResult result) {
-        if (userRepository.findByEmail(newUser.getEmail()).isPresent()) { // Reject if email is taken (present in database)
+        if (userRepository.findByEmail(newUser.getEmail()).isPresent()) { // Reject if email is taken (present in
+                                                                          // database)
             result.rejectValue("email", "Email", "What are you doing?? you already registered");
         } // Reject if password doesn't match confirmation
         if (!newUser.getPassword().equals(newUser.getConfirm())) {
@@ -37,13 +37,14 @@ public class UserService {
         return userRepository.save(newUser); // - save user to database
     }
 
-    // * user Login method: 
+    // * user Login method:
     public User login(LoginCheck newLoginObject, BindingResult result) {
         Optional<User> user = userRepository.findByEmail(newLoginObject.getEmail()); // Find user in the DB by email
         if (!user.isPresent()) {
             result.rejectValue("email", "logEmail", "Invalid credentials"); // Reject if NOT present
         } else if (!BCrypt.checkpw(newLoginObject.getPassword(), user.get().getPassword())) {
-            result.rejectValue("password", "logPassword", "Invalid credentials"); // Reject if BCrypt password match fails
+            result.rejectValue("password", "logPassword", "Invalid credentials"); // Reject if BCrypt password match
+                                                                                  // fails
         }
         if (result.hasErrors()) { // Return null if result has errors
             return null;
@@ -51,6 +52,15 @@ public class UserService {
         return user.get(); // Otherwise, return the user object
     }
 
-    //! Extend service for one to many tasks????
-    
+    // ! Extend service for one to many tasks????
+
+    // * Find all users
+    public List<User> allUsers() {
+        return userRepository.findAll();
+    }
+
+    // * Find one user
+    public User findUser(Long id) {
+        return userRepository.findById(id).orElse(null);
+    }
 }
