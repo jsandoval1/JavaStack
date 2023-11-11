@@ -23,13 +23,13 @@ public class TaskApiController {
     // * Route to get all tasks
     @GetMapping("/tasks")
     public List<Task> getAllTasks() {
-        return taskService.allTasks();
+        return taskService.getAllTasks();
     }
 
     // * Route to get one task
     @GetMapping("/tasks/{id}")
     public Task getOneTask(@PathVariable Long id) {
-        return taskService.findTask(id);
+        return taskService.getOneTask(id);
     }
 
     // * Route to create a task

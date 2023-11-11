@@ -28,12 +28,6 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    // {
-    //     "taskName": "Finish project",
-    //     "taskDescription": "Complete the coding project for the client",
-    //     "priority": "HIGH",
-    //     "dueDate": "2022-12-31"
-    // }
 
     @NotBlank(message = "Task name is required!")
     @Size(min = 2, message = "Task name must be at least 2 characters long")
@@ -55,7 +49,6 @@ public class Task {
     private Priority priority;
 
     // * Completion Status
-    // ! Need to test if this worked
     public enum CompletionStatus {
         STARTED, IN_PROGRESS, DONE
     }
