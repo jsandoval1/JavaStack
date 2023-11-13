@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
 import jakarta.servlet.http.HttpSession;
+import sandoval.john.letsdoit.models.Comment;
 import sandoval.john.letsdoit.models.Task;
 import sandoval.john.letsdoit.models.User;
 import sandoval.john.letsdoit.services.TaskService;
@@ -43,13 +44,24 @@ public class TaskController {
     // localhost:8080/tasks/{id}
     // Check if user is logged in
     // Displays one task
+    // @GetMapping("/tasks/{id}")
+    // public String viewTask(@ModelAttribute("task") Task task, HttpSession
+    // session, Model model) {
+    // if (session.getAttribute("user") == null) {
+    // return "redirect:/";
+    // }
+    // Task taskToView = taskService.getOneTask(task.getId());
+    // model.addAttribute("task", taskToView);
+    // return "ViewTask";
+    // }
     @GetMapping("/tasks/{id}")
-    public String viewTask(@ModelAttribute("task") Task task, HttpSession session, Model model) {
+    public String viewTask(@PathVariable("id") Long id, HttpSession session, Model model) {
         if (session.getAttribute("user") == null) {
             return "redirect:/";
         }
-        Task taskToView = taskService.getOneTask(task.getId());
+        Task taskToView = taskService.getOneTask(id);
         model.addAttribute("task", taskToView);
+        model.addAttribute("comment", new Comment()); // add this line
         return "ViewTask";
     }
 

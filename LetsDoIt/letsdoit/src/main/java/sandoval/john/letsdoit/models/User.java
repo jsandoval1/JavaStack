@@ -1,9 +1,11 @@
 package sandoval.john.letsdoit.models;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -54,7 +56,12 @@ public class User {
 
     // * One to Many Relationship with Tasks
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private java.util.List<Task> tasks;
+    private List<Task> tasks;
+
+    // ! NEW
+    // *Connect one to many relationship with Comment
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Comment> comments;
 
     @Column(updatable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -116,14 +123,24 @@ public class User {
         this.confirm = confirm;
     }
 
-    public java.util.List<Task> getTasks() {
+    public List<Task> getTasks() {
         return this.tasks;
     }
 
-    public void setTasks(java.util.List<Task> tasks) {
+    public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
     }
 
+    // ! NEW
+    public List<Comment> getComments() {
+        return this.comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+    // ! END NEW
+    
     public Date getCreatedAt() {
         return this.createdAt;
     }

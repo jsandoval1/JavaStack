@@ -1,9 +1,11 @@
 package sandoval.john.letsdoit.models;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -13,6 +15,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
@@ -24,7 +27,7 @@ import jakarta.validation.constraints.Size;
 @Table(name = "tasks")
 public class Task {
 
-    // ? Field Attributes and Back end Validations
+    // * Field Attributes and Back end Validations
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -38,8 +41,6 @@ public class Task {
     @Size(max = 1000, message = "Task description must be less than 1000 characters long")
     private String taskDescription;
 
-    // * Priority Status
-    // ! Need to test if this worked
     public enum Priority {
         LOW, MEDIUM, HIGH
     }
@@ -48,7 +49,6 @@ public class Task {
     @Enumerated(EnumType.STRING)
     private Priority priority;
 
-    // * Completion Status
     public enum CompletionStatus {
         STARTED, IN_PROGRESS, DONE
     }
@@ -57,12 +57,11 @@ public class Task {
     @Enumerated(EnumType.STRING)
     private CompletionStatus completionStatus = CompletionStatus.STARTED;
 
-    // * Due Date
     @NotNull(message = "Task due date is required!")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dueDate;
 
-    // * Image file
+    // ? Image file
     // private byte[] imageFile; //! Retire idea of trying to get images for tasks
     // to work
 
@@ -71,18 +70,22 @@ public class Task {
     @JoinColumn(name = "user_id")
     private User user;
 
-    // * For created and updated at
+    // ? NEW, need to test if this worked
+    // *Connect one to many relationship with Comment
+    @OneToMany(mappedBy = "task", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Comment> comments;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createdAt;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date updatedAt;
 
-    // ? Empty Constructor
+    // * Empty Constructor
     public Task() {
     }
 
-    // ? Getters and Setters
+    // * Getters and Setters
     public Long getId() {
         return this.id;
     }
@@ -138,6 +141,16 @@ public class Task {
     public void setUser(User user) {
         this.user = user;
     }
+
+    // ! NEW, need to test if this worked
+    public List<Comment> getComments() {
+        return this.comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+    // ! END NEW
 
     public Date getCreatedAt() {
         return this.createdAt;
