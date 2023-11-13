@@ -45,15 +45,6 @@ public class TaskController {
     // Check if user is logged in
     // Displays one task
     // @GetMapping("/tasks/{id}")
-    // public String viewTask(@ModelAttribute("task") Task task, HttpSession
-    // session, Model model) {
-    // if (session.getAttribute("user") == null) {
-    // return "redirect:/";
-    // }
-    // Task taskToView = taskService.getOneTask(task.getId());
-    // model.addAttribute("task", taskToView);
-    // return "ViewTask";
-    // }
     @GetMapping("/tasks/{id}")
     public String viewTask(@PathVariable("id") Long id, HttpSession session, Model model) {
         if (session.getAttribute("user") == null) {
@@ -61,7 +52,7 @@ public class TaskController {
         }
         Task taskToView = taskService.getOneTask(id);
         model.addAttribute("task", taskToView);
-        model.addAttribute("comment", new Comment()); // add this line
+        model.addAttribute("comment", new Comment()); //? This empty comment model is needed for the comment form
         return "ViewTask";
     }
 
