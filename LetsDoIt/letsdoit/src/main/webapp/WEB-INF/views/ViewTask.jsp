@@ -33,7 +33,8 @@
                         <tr>
                             <th>Due Date</th>
                             <td>
-                                <c:out value="${task.dueDate}" />
+                                <fmt:formatDate value="${task.dueDate}" pattern="MM/dd/yyyy" var="formattedDate" />
+                                ${formattedDate}
                             </td>
                         </tr>
                         <tr>
@@ -51,7 +52,11 @@
                         <tr>
                             <th>Created At</th>
                             <td>
-                                <c:out value="${task.createdAt}" />
+                                <fmt:formatDate value="${task.createdAt}" pattern="MM/dd/yyyy" var="formattedDate" />
+                                ${formattedDate}
+                                <br>
+                                <fmt:formatDate value="${task.createdAt}" pattern="hh:mm:ss a" var="formattedTime" />
+                                ${formattedTime}
                             </td>
                         </tr>
                     </table>
