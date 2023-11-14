@@ -61,7 +61,7 @@ public class Task {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dueDate;
 
-    // ? Image file
+    // * Image file
     // private byte[] imageFile; //! Retire idea of trying to get images for tasks
     // to work
 

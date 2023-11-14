@@ -12,6 +12,7 @@
 <body>
     <h1>Welcome to the Home Page</h1>
     <h2> Hey, ${user.firstName}</h2> 
+    <a href="/chat/new">Go to Chat</a>
     <a href="/tasks/new">Create a Task</a>
     <table>
         <thead>

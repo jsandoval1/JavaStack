@@ -59,8 +59,20 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    // * Get all users
+    public List<User> getAllUsers() {
+        List<User> users = userRepository.findAll();
+        System.out.println("Number of users fetched: " + users.size()); // ? Debugging: Print number of users fetched
+        for (User user : users) {
+            System.out.println(user.getFirstName()); // ? Debugging: Print first name of each user
+        }
+        return users;
+    }
+    
+
     // * Find one user
     public User findUser(Long id) {
         return userRepository.findById(id).orElse(null);
     }
+
 }

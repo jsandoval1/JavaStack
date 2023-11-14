@@ -58,10 +58,23 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Task> tasks;
 
-    // ! NEW
     // *Connect one to many relationship with Comment
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Comment> comments;
+
+
+    // ! Connecting to the messages table
+    // * One to Many Relationship with Messages
+    @OneToMany(mappedBy = "senderUser", fetch = FetchType.LAZY)
+    private List<Chat> sentMessages;
+
+    // * One to Many Relationship with Messages
+    @OneToMany(mappedBy = "receiverUser", fetch = FetchType.LAZY)
+    private List<Chat> receivedMessages;
+
+    @OneToMany(mappedBy = "user")
+    private List<Chat> chats;
+    // ! END NEW
 
     @Column(updatable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")

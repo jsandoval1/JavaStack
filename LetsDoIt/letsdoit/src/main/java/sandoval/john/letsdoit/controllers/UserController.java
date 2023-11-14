@@ -53,15 +53,6 @@ public class UserController {
         }
     }
 
-    // @GetMapping("/home") //! Becomes /books?
-    // // Method to check if user is in session to access pages
-    // public String home(HttpSession session) { //! Need this later for session check 
-    //     if (session.getAttribute("userId") == null) {
-    //         return "redirect:/";
-    //     }
-    //     return "home";
-    // }
-
     @GetMapping("/logout") // Logout method
     public String logout(HttpSession session) {
         session.invalidate();
