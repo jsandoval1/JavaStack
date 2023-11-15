@@ -37,6 +37,7 @@ public class TaskController {
         }
         List<Task> tasks = taskService.getAllTasks();
         model.addAttribute("tasks", tasks);
+        model.addAttribute("page", "home"); //Needed for the navbar css
         return "Home";
     }
 

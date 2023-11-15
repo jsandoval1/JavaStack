@@ -50,7 +50,17 @@ public class Task {
     private Priority priority;
 
     public enum CompletionStatus {
-        STARTED, IN_PROGRESS, DONE
+        STARTED("🥚"), IN_PROGRESS("🐔"), DONE("🍗");
+
+        private final String emoji;
+
+        CompletionStatus(String emoji) {
+            this.emoji = emoji;
+        }
+
+        public String getEmoji() {
+            return emoji;
+        }
     }
 
     @NotNull(message = "Task completion status is required!")
@@ -142,7 +152,6 @@ public class Task {
         this.user = user;
     }
 
-    // ! NEW, need to test if this worked
     public List<Comment> getComments() {
         return this.comments;
     }
@@ -150,7 +159,6 @@ public class Task {
     public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
-    // ! END NEW
 
     public Date getCreatedAt() {
         return this.createdAt;
