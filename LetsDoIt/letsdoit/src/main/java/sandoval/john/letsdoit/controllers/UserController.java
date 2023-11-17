@@ -58,4 +58,27 @@ public class UserController {
         session.invalidate();
         return "redirect:/";
     }
+
+    // // Go to user settings page
+    // @GetMapping("/settings")
+    // public String settings(HttpSession session, Model model) {
+    //     Long userId = (Long) session.getAttribute("userId");
+    //     User user = userService.findUser(userId);
+    //     model.addAttribute("user", user);
+    //     return "UserSettings";
+    // }
+
+    // // Update user settings
+    // @PostMapping("/settings")
+    // public String updateSettings(@Valid @ModelAttribute("user") User user, BindingResult result, HttpSession session, Model model) {
+    //     if (result.hasErrors()) {
+    //         Long userId = (Long) session.getAttribute("userId");
+    //         User user1 = userService.findUser(userId);
+    //         model.addAttribute("user", user1);
+    //         return "UserSettings";
+    //     } else {
+    //         userService.updateUser(user);
+    //         return "redirect:/home";
+    //     }
+    // }
 }

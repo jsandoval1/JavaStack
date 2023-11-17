@@ -54,6 +54,9 @@ public class User {
     @Size(min = 8, max = 128, message = "Confirm Password must be between 8 and 128 characters")
     private String confirm;
 
+    // User location, they do not need to set this when they register. It will be defaulted to null. However they can update it later.
+    private String location;
+
     // * One to Many Relationship with Tasks
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Task> tasks;
@@ -61,20 +64,6 @@ public class User {
     // *Connect one to many relationship with Comment
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Comment> comments;
-
-
-    // ! Connecting to the messages table
-    // * One to Many Relationship with Messages
-    @OneToMany(mappedBy = "senderUser", fetch = FetchType.LAZY)
-    private List<Chat> sentMessages;
-
-    // * One to Many Relationship with Messages
-    @OneToMany(mappedBy = "receiverUser", fetch = FetchType.LAZY)
-    private List<Chat> receivedMessages;
-
-    @OneToMany(mappedBy = "user")
-    private List<Chat> chats;
-    // ! END NEW
 
     @Column(updatable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -144,7 +133,6 @@ public class User {
         this.tasks = tasks;
     }
 
-    // ! NEW
     public List<Comment> getComments() {
         return this.comments;
     }
@@ -152,7 +140,6 @@ public class User {
     public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
-    // ! END NEW
     
     public Date getCreatedAt() {
         return this.createdAt;
@@ -168,6 +155,14 @@ public class User {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getLocation() {
+        return this.location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     // * PrePersist and PreUpdate methods to set the createdAt and updatedAt fields

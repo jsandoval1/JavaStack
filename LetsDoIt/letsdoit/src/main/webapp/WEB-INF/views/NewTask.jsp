@@ -1,55 +1,165 @@
-<!-- CreateNewBook.jsp -->
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-    <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-        <%@ page isErrorPage="true" %>
-            <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-                <!DOCTYPE html>
-                <html>
+<!-- Home.jsp -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+        <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+            <!-- jstl tag for forms -->
+            <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+                <!doctype html>
+                <html lang="en">
 
                 <head>
-                    <title>Create New Task</title>
+                    <meta charset="utf-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1">
+                    <title>LetsDoIt Home</title>
+                    <!-- Link to js file -->
+                    <script src="/js/quote.js"></script>
+                    <!-- Link to css file -->
+                    <link rel="stylesheet" href="/css/NewTask.css">
+                    <!-- Link to bootstrap css file -->
+                    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+                        rel="stylesheet"
+                        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+                        crossorigin="anonymous">
                 </head>
 
-                <body>
-                    <h1>Create a New Book</h1>
-                    <form:form method="POST" action="/tasks/new" modelAttribute="task">
-                        <!-- * ⬇️ NEED THIS FOR BOOK TO TIE WITH USER ID ⬇️-->
-                        <input type="hidden" name="user" value="${userId}">
+                <body style="background-color: gray;">
 
-                        <!-- * Task Name -->
-                        <label for="taskName">Task Name:</label>
-                        <form:input path="taskName" required="true" />
-                        <form:errors path="taskName" />
-                        <br>
+                    <!-- Header -->
+                    <header class="navbar navbar-expand-lg navbar-dark justify-content-center"
+                        style="padding-top: 0.5rem; padding-bottom: 0.5rem; background-color: #6AA84F ;">
+                        <div class="container-fluid d-flex justify-content-center mx-auto">
+                            <a class="navbar-brand" href="/home">LetsDoIt &#127793;</a>
+                        </div>
+                    </header>
 
-                        <!-- * Description -->
-                        <label for="taskDescription">Describe the task:</label>
-                        <form:input path="taskDescription" required="true" />
-                        <form:errors path="taskDescription" />
-                        <br>
+                    <div class="content-container">
+                        <div class="container-fluid mt-2">
+                            <div class="row">
 
-                        <!-- * Priority -->
-                        <label for="priority">Priority:</label>
-                        <form:select path="priority">
-                            <form:option value="LOW">Low</form:option>
-                            <form:option value="MEDIUM">Medium</form:option>
-                            <form:option value="HIGH">High</form:option>
-                        </form:select>
-                        <form:errors path="priority" />
-                        <br>
+                                <!-- Left NavBar -->
+                                <div class="col-md-3" style="padding-right: 0;">
+                                    <nav class="nav flex-column">
+                                        <a class="nav-link ${page == 'home' ? 'active' : ''}" href="/home">&#x1F343;
+                                            Home</a>
+                                        <a class="nav-link ${page == 'createTask' ? 'active' : ''}"
+                                            href="/tasks/new">&#127912;
+                                            LetsDoPost</a>
+                                        <a class="nav-link disabled" href="#" tabindex="-1"
+                                            aria-disabled="true">&#128488;
+                                            LetsDoChat</a>
+                                        <a class="nav-link ${page == 'logout' ? 'active' : ''}" href="#">&#9881;
+                                            LetsDoSettings</a>
+                                        <a class="nav-link ${page == 'logout' ? 'active' : ''}"
+                                            href="/logout">&#128694;Logout</a>
+                                    </nav>
+                                </div>
 
-                        <!-- * Due Date -->
-                        <label for="dueDate">Due Date:</label>
-                        <form:input path="dueDate" type="date" required="true" />
-                        <form:errors path="dueDate" />
+                                <!-- Right Maincontent -->
+                                <div class="col-md-9" style="padding-left: 0;">
+                                    <div style="background-color: #B6D7A8; padding: 1rem;">
+                                        <div class="d-flex justify-content-center">
+                                            <h2>LetsDoHub</h2>
+                                        </div>
+                                        <!-- Form -->
+                                        <h6> Welcome, ${sessionScope.user.firstName}</h6>
+                                        <p>
+                                            Our servers will take care of of the date and time you post this task. What
+                                            we need from you is...
+                                        </p>
+                                        <div class="d-flex justify-content-center">
+                                            <div class="mx-auto col-md-6"
+                                                style="background-color:#6AA84F; border-radius: 10px;">
 
-                        <!-- *Submit Button -->
-                        <input type="submit" value="Add Task" />
+                                                <form:form method="POST" action="/tasks/new" modelAttribute="task"
+                                                    class="p-3" style="background-color: transparent;">
+                                                    <!-- * ⬇️ NEED THIS FOR BOOK TO TIE WITH USER ID ⬇️-->
+                                                    <input type="hidden" name="user" value="${userId}">
 
-                    </form:form>
-                    <br>
+                                                    <!-- * Task Name -->
+                                                    <div class="form-group mt-2">
+                                                        <label for="taskName">Give your task a short descriptive
+                                                            name:</label>
+                                                        <form:input path="taskName" required="true" class="form-control"
+                                                            placeholder="Enter your idea here (50 char max)" />
+                                                        <form:errors path="taskName" />
+                                                    </div>
 
-                    <a href="/home">Go Back</a>
+                                                    <!-- * Priority -->
+                                                    <div class="form-group mt-2">
+                                                        <label for="priority"> How would you rate the urgency of this?
+                                                        </label>
+                                                        <form:select path="priority" class="form-control">
+                                                            <form:option value="LOW"> &#128994;Low</form:option>
+                                                            <form:option value="MEDIUM">&#128993;Medium</form:option>
+                                                            <form:option value="HIGH">&#128308;High</form:option>
+                                                        </form:select>
+                                                        <form:errors path="priority" />
+                                                    </div>
+
+                                                    <!-- * Description -->
+                                                    <div class="form-group mt-2">
+                                                        <label for="taskDescription">Give your friends a more detailed
+                                                            description of what needs to be done:</label>
+                                                        <form:input path="taskDescription" required="true"
+                                                            class="form-control"
+                                                            placeholder="Enter your details here (1000 char max)" />
+                                                        <form:errors path="taskDescription" />
+                                                    </div>
+
+                                                    <!-- * Due Date -->
+                                                    <div class="form-group mt-2">
+                                                        <label for="dueDate">When are you going to have this done
+                                                            by?:</label>
+                                                        <form:input path="dueDate" type="date" required="true"
+                                                            class="form-control" />
+                                                        <form:errors path="dueDate" />
+                                                    </div>
+
+                                                    <div class="text-center mt-2">
+                                                        <p>
+                                                            (Our servers will automatically start your goal off as an
+                                                            egg, you can
+                                                            change it later as you make progress)
+                                                        </p>
+                                                    </div>
+                                                    <!-- *Submit Button -->
+                                                    <div class="text-center mt-2">
+                                                        <input type="submit" value="LetsPostThis"
+                                                            class="btn btn-success"
+                                                            style="background-color: #B6D7A8; color: black;" />
+                                                    </div>
+                                                </form:form>
+                                            </div>
+                                        </div>
+
+                                        <!-- Quote -->
+                                        <div class="text-center mt-3">
+                                            <div class="container mt-5">
+                                                <div class="row justify-content-center">
+                                                    <div class="col-md-8">
+                                                        <div class="card">
+                                                            <div class="card-header">
+                                                                <h4 class="mb-0"><u><i>Today's Motivational
+                                                                            Quote</i></u>
+                                                                </h4>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <div id="quote">
+                                                                    <p id="quoteText" class="card-text"></p>
+                                                                    <p id="quoteAuthor"
+                                                                        class="card-subtitle mb-2 text-muted">
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div> <!-- End of Main Content Green Div -->
+                                </div>
+
                 </body>
 
                 </html>

@@ -37,7 +37,7 @@ public class TaskController {
         }
         List<Task> tasks = taskService.getAllTasks();
         model.addAttribute("tasks", tasks);
-        model.addAttribute("page", "home"); //Needed for the navbar css
+        model.addAttribute("page", "home"); // Needed for the navbar css
         return "Home";
     }
 
@@ -53,7 +53,7 @@ public class TaskController {
         }
         Task taskToView = taskService.getOneTask(id);
         model.addAttribute("task", taskToView);
-        model.addAttribute("comment", new Comment()); //? This empty comment model is needed for the comment form
+        model.addAttribute("comment", new Comment()); // ? This empty comment model is needed for the comment form
         return "ViewTask";
     }
 
@@ -62,10 +62,11 @@ public class TaskController {
     // Check if user is logged in
     // Displays form for creating a new task
     @GetMapping("/tasks/new")
-    public String newTask(@ModelAttribute Task task, HttpSession session) {
+    public String newTask(@ModelAttribute Task task, HttpSession session, Model model) {
         if (session.getAttribute("user") == null) {
             return "redirect:/";
         }
+        model.addAttribute("page", "createTask"); // Needed for the navbar css
         return "NewTask";
     }
 
