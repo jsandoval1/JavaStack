@@ -7,6 +7,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+// import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -28,7 +30,8 @@ public class UserController {
     }
 
     @PostMapping("/register") // Action method of the register form
-    public String register(@Valid @ModelAttribute("newUser") User newUser, BindingResult result, Model model, HttpSession session) {
+    public String register(@Valid @ModelAttribute("newUser") User newUser, BindingResult result, Model model,
+            HttpSession session) {
         User user = userService.register(newUser, result);
         if (result.hasErrors()) { // ! If errors are found, redirect to the index page and display form errors
             model.addAttribute("newLogin", new LoginCheck());
@@ -41,9 +44,11 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login(@Valid @ModelAttribute("newLogin") LoginCheck newLogin, BindingResult result, Model model, HttpSession session) {
+    public String login(@Valid @ModelAttribute("newLogin") LoginCheck newLogin, BindingResult result, Model model,
+            HttpSession session) {
         User user = userService.login(newLogin, result);
-        if (result.hasErrors() || user == null) { // ! If errors are found, OR user is equal to null, direct to the index page and display form errors
+        if (result.hasErrors() || user == null) { // ! If errors are found, OR user is equal to null, direct to the
+                                                  // index page and display form errors
             model.addAttribute("newUser", new User());
             return "UserAuth";
         } else { // * No errors!
@@ -59,26 +64,35 @@ public class UserController {
         return "redirect:/";
     }
 
-    // // Go to user settings page
-    // @GetMapping("/settings")
-    // public String settings(HttpSession session, Model model) {
-    //     Long userId = (Long) session.getAttribute("userId");
-    //     User user = userService.findUser(userId);
-    //     model.addAttribute("user", user);
-    //     return "UserSettings";
-    // }
+    // Go to user settings page
+    @GetMapping("/settings")
+    public String settings(HttpSession session, Model model) {
+        User sessionUser = (User) session.getAttribute("user");
+        if (sessionUser == null) {
+            return "redirect:/";
+        }
+        Long userId = sessionUser.getId();
+        User user = userService.findUser(userId);
+        model.addAttribute("user", user);
+        return "UserSettings";
+    }
 
-    // // Update user settings
-    // @PostMapping("/settings")
-    // public String updateSettings(@Valid @ModelAttribute("user") User user, BindingResult result, HttpSession session, Model model) {
-    //     if (result.hasErrors()) {
-    //         Long userId = (Long) session.getAttribute("userId");
-    //         User user1 = userService.findUser(userId);
-    //         model.addAttribute("user", user1);
-    //         return "UserSettings";
-    //     } else {
-    //         userService.updateUser(user);
-    //         return "redirect:/home";
-    //     }
-    // }
+    // Update user settings
+    @PutMapping("/settings")
+    public String updateSettings(@Valid @ModelAttribute("user") User user, BindingResult result, HttpSession session,
+            Model model) {
+        User sessionUser = (User) session.getAttribute("user");
+        if (sessionUser == null) {
+            return "redirect:/";
+        }
+        Long userId = sessionUser.getId();
+        User userToUpdate = userService.findUser(userId);
+        if (result.hasErrors()) {
+            model.addAttribute("user", userToUpdate);
+            return "UserSettings";
+        } else {
+            userService.updateUser(user);
+            return "redirect:/home";
+        }
+    }
 }

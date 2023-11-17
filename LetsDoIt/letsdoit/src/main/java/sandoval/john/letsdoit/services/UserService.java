@@ -81,7 +81,7 @@ public class UserService {
     }
 
     // * Update user
-    public User updateUser(@Valid User user) {
-        return userRepository.save(user);
+    public void updateUser(@Valid User user) {
+        userRepository.save(user);
     }
 }

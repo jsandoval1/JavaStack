@@ -12,4 +12,3 @@ fetch('https://type.fit/api/quotes')
     })
     .catch(error => console.error(error));
 
-    

@@ -2,23 +2,22 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
         <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-            <!doctype html>
+            <!DOCTYPE html>
             <html lang="en">
 
             <head>
                 <meta charset="utf-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1">
-                <title>LetsDoIt Home</title>
-                <!-- Link to js file -->
+                <title>LetsDoIt</title>
                 <script src="/js/quote.js"></script>
-                <!-- Link to css file -->
-                <link rel="stylesheet" href="/css/style.css">
+                <link rel="stylesheet" href="/css/Home.css">
 
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
                     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
                     crossorigin="anonymous">
             </head>
 
+            <!-- LetsDoItHeader -->
             <body style="background-color: gray;">
                 <header class="navbar navbar-expand-lg navbar-dark justify-content-center"
                     style="padding-top: 0.5rem; padding-bottom: 0.5rem; background-color: #6AA84F ;">
@@ -27,6 +26,7 @@
                     </div>
                 </header>
 
+                <!-- Main Content -->
                 <div class="content-container">
                     <div class="container-fluid mt-2">
                         <div class="row">
@@ -34,17 +34,11 @@
                             <!-- Left NavBar -->
                             <div class="col-md-3" style="padding-right: 0;">
                                 <nav class="nav flex-column">
-                                    <a class="nav-link ${page == 'home' ? 'active' : ''}" href="/home">&#x1F343;
-                                        Home</a>
-                                    <a class="nav-link ${page == 'createTask' ? 'active' : ''}"
-                                        href="/tasks/new">&#127912;
-                                        LetsDoPost</a>
-                                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">&#128488;
-                                        LetsDoChat</a>
-                                    <!-- <a class="nav-link ${page == 'logout' ? 'active' : ''}" href="/settings">&#9881;
-                                        LetsDoSettings</a> -->
-                                    <a class="nav-link ${page == 'logout' ? 'active' : ''}"
-                                        href="/logout">&#128694;Logout</a>
+                                    <a class="nav-link" href="/home">&#x1F343; Home</a>
+                                    <a class="nav-link" href="/tasks/new">&#127912; LetsDoPost</a>
+                                    <a class="nav-link disabled" href="#">&#128488; LetsDoChat</a>
+                                    <a class="nav-link disabled" href="#">&#9881; LetsDoSettings</a>
+                                    <a class="nav-link" href="/logout">&#128694;Logout</a>
                                 </nav>
                             </div>
 
@@ -60,8 +54,9 @@
                                         </div>
                                         <div>
                                             <h3>WeatherAPI</h3>
-                                            <!-- * Add weather API call here -->
+                                            <!-- ! Add weather API call here -->
                                             <div id="weather"></div>
+                                            <!-- ! Plans for weather API -->
                                             <script>
                                                 fetch(`https://api.openweathermap.org/data/2.5/weather?q=${sessionScope.user.location}&appid=API_KEY&units=metric`)
                                                     .then(response => response.json())
@@ -75,6 +70,7 @@
                                             </script>
                                         </div>
                                     </div>
+
                                     <!-- Table -->
                                     <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
                                         <table class="table table-hover" style="border: 1px solid black;">
@@ -102,14 +98,14 @@
                                                 <c:forEach items="${tasks}" var="task">
                                                     <tr class="table-row">
 
-                                                        <!-- *created date -->
+                                                        <!-- created @ date -->
                                                         <td class="d-none d-md-table-cell">
                                                             <fmt:formatDate value="${task.createdAt}" pattern="MM/dd/yy"
                                                                 var="formattedDate" />
                                                             ${formattedDate}
                                                         </td>
 
-                                                        <!-- *user first name -->
+                                                        <!-- user first name -->
                                                         <td>${task.user.firstName}
                                                             <c:if test="${userId == task.user.id }">
                                                                 <a href="/tasks/edit/${task.id}"
@@ -118,40 +114,37 @@
                                                             </c:if>
                                                         </td>
 
-                                                        <!-- *task name and priority -->
-
+                                                        <!-- task name and priority -->
                                                         <td>
                                                             <a href="/tasks/${task.id}">${task.taskName}</a>
                                                             <div>
                                                                 <c:choose>
                                                                     <c:when test="${task.priority.toString() == 'LOW'}">
                                                                         <span>&#x1F7E2; Low priority</span>
-                                                                        <!-- Green Square Emoji-->
+                                                                        <!-- Green Circle Emoji-->
                                                                     </c:when>
                                                                     <c:when
                                                                         test="${task.priority.toString() == 'MEDIUM'}">
                                                                         <span>&#x1F7E1; Medium Priority</span>
-                                                                        <!-- Yellow Square Emoji-->
+                                                                        <!-- Yellow Circle Emoji-->
                                                                     </c:when>
                                                                     <c:when
                                                                         test="${task.priority.toString() == 'HIGH'}">
                                                                         <span>&#x1F7E0; High Priority</span>
-                                                                        <!-- Red Square Emoji-->
+                                                                        <!-- Red Circle Emoji-->
                                                                     </c:when>
                                                                 </c:choose>
                                                             </div>
                                                         </td>
 
-                                                        <!-- *due date -->
+                                                        <!-- due date -->
                                                         <td>
                                                             <fmt:formatDate value="${task.dueDate}" pattern="MM/dd/yy"
                                                                 var="formattedDueDate" />
                                                             ${formattedDueDate}
                                                         </td>
 
-                                                        <!-- *priority-->
-
-                                                        <!-- *completion status -->
+                                                        <!-- completion status -->
                                                         <td>
                                                             <c:choose>
                                                                 <c:when
@@ -172,12 +165,12 @@
                                                             </c:choose>
                                                         </td>
 
-                                                        <!-- *comment count -->
+                                                        <!-- comment count -->
                                                         <td class="d-none d-md-table-cell">
                                                             <c:out value="${fn:length(task.comments)}" />
                                                         </td>
 
-                                                        <!-- *actions -->
+                                                        <!-- actions -->
                                                         <td>
                                                             <div class="text-center">
                                                                 <a href="/tasks/${task.id}" class="btn btn-info btn-sm"
@@ -223,9 +216,8 @@
                                             </div>
                                         </div>
                                     </div>
-
-                                </div> <!-- End of Main Content Green Div -->
-                            </div>
+                                </div> 
+                            </div><!-- End of Main Content Green Div -->
 
             </body>
 
