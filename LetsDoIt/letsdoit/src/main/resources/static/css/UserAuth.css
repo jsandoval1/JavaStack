@@ -4,6 +4,15 @@
     border: 4px solid #6AA84F;
 }
 
+* {
+    /* font-family: 'Comic Sans MS', 'Comic Sans', cursive; */
+    font-family: 'Play', sans-serif;
+}
+
+#logo {
+    font-family: 'Carter One', sans-serif;
+}
+
 h2 {
     text-align: center;
 }

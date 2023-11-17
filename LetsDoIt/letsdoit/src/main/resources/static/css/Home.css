@@ -1,6 +1,11 @@
 * {
-    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+    /* font-family: 'Comic Sans MS', 'Comic Sans', cursive; */
+    font-family: 'Play', sans-serif;
 
+}
+
+#logo {
+    font-family: 'Carter One', sans-serif;
 }
 
 .content-container {
@@ -49,4 +54,3 @@ th {
     overflow-y: auto;
     /* max-height: 300px; */
 }
-

@@ -1,19 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> <!--! c:out ; c:forEach etc. -->
-        <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> <!--! Formatting (dates) -->
-            <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> <!--! form:form -->
-                <%@ page isErrorPage="true" %> <!--! for rendering errors on PUT routes -->
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+        <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+            <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+                <%@ page isErrorPage="true" %>
                     <!DOCTYPE html>
                     <html lang="en">
 
                     <head>
                         <meta charset="UTF-8">
                         <title>LetsLogIn</title>
+                        <link rel="stylesheet" href="/css/UserAuth.css">
+                        <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap"
+                            rel="stylesheet">
+                        <link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
                         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
                             rel="stylesheet"
                             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
                             crossorigin="anonymous">
-                        <link rel="stylesheet" href="/css/UserAuth.css">
                     </head>
 
                     <body style="background-color: #666666;">
@@ -22,7 +25,7 @@
                         <header class="navbar navbar-expand-lg navbar-dark justify-content-center"
                             style="padding-top: 0.5rem; padding-bottom: 0.5rem; background-color: #6AA84F ;">
                             <div class="container-fluid d-flex justify-content-center mx-auto">
-                                <a class="navbar-brand" href="/home">LetsDoIt &#127793;</a>
+                                <a class="navbar-brand" id="logo" href="/home">LetsDoIt &#127793;</a>
                             </div>
                         </header>
 

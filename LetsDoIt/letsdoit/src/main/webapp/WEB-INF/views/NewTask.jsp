@@ -12,6 +12,8 @@
                     <title>LetsDoPost</title>
                     <script src="/js/quote.js"></script>
                     <link rel="stylesheet" href="/css/NewTask.css">
+                    <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
+                    <link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
                     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
                         rel="stylesheet"
                         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
@@ -19,13 +21,14 @@
                 </head>
 
                 <!-- Setting background color gray -->
+
                 <body style="background-color: gray;">
 
                     <!-- Header -->
                     <header class="navbar navbar-expand-lg navbar-dark justify-content-center"
                         style="padding-top: 0.5rem; padding-bottom: 0.5rem; background-color: #6AA84F ;">
                         <div class="container-fluid d-flex justify-content-center mx-auto">
-                            <a class="navbar-brand" href="/home">LetsDoIt &#127793;</a>
+                            <a class="navbar-brand" id="logo" href="/home">LetsDoIt &#127793;</a>
                         </div>
                     </header>
 
@@ -98,7 +101,7 @@
                                                         <form:input path="taskDescription" required="true"
                                                             class="form-control"
                                                             placeholder="Enter your details here (1000 char max)" />
-                                                        <form:errors style="color: red; text-shadow: 1px 1px black;" 
+                                                        <form:errors style="color: red; text-shadow: 1px 1px black;"
                                                             path="taskDescription" />
                                                     </div>
 
@@ -108,7 +111,7 @@
                                                             by?:</label>
                                                         <form:input path="dueDate" type="date" required="true"
                                                             class="form-control" />
-                                                        <form:errors style="color: red; text-shadow: 1px 1px black;" 
+                                                        <form:errors style="color: red; text-shadow: 1px 1px black;"
                                                             path="dueDate" />
                                                     </div>
 
