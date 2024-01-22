@@ -44,8 +44,8 @@ public class CommentController {
     // Creates a new comment
     // Redirects to task page
     @PostMapping("/comment/new")
-    public String createComment(@Valid @ModelAttribute("comment") Comment comment, BindingResult result,
-            @RequestParam("taskId") Long taskId, @RequestParam("userId") Long userId, Model model) {
+    public String createComment(@Valid @ModelAttribute Comment comment, BindingResult result,
+            @RequestParam Long taskId, @RequestParam Long userId, Model model) {
         if (result.hasErrors()) {
             Task task = taskService.getOneTask(taskId);
             User user = userService.findUser(userId);

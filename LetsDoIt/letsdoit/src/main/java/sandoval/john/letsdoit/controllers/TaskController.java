@@ -47,7 +47,7 @@ public class TaskController {
     // Displays one task
     // @GetMapping("/tasks/{id}")
     @GetMapping("/tasks/{id}")
-    public String viewTask(@PathVariable("id") Long id, HttpSession session, Model model) {
+    public String viewTask(@PathVariable Long id, HttpSession session, Model model) {
         if (session.getAttribute("user") == null) {
             return "redirect:/";
         }
@@ -94,7 +94,7 @@ public class TaskController {
     // Check if the session user is the creator of the task
     // Displays form for editing a task
     @GetMapping("/tasks/edit/{id}")
-    public String editTask(@PathVariable("id") Long id, HttpSession session, Model model) {
+    public String editTask(@PathVariable Long id, HttpSession session, Model model) {
         User sessionUser = (User) session.getAttribute("user");
         if (sessionUser == null) {
             return "redirect:/";
@@ -134,7 +134,7 @@ public class TaskController {
     // Check if the session user is the creator of the task
     // Deletes a task
     @DeleteMapping("/tasks/delete/{id}")
-    public String deleteTask(@PathVariable("id") Long id, HttpSession session) {
+    public String deleteTask(@PathVariable Long id, HttpSession session) {
         User sessionUser = (User) session.getAttribute("user");
         if (sessionUser == null) {
             return "redirect:/";

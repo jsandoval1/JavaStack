@@ -30,7 +30,7 @@ public class UserController {
     }
 
     @PostMapping("/register") // Action method of the register form
-    public String register(@Valid @ModelAttribute("newUser") User newUser, BindingResult result, Model model,
+    public String register(@Valid @ModelAttribute User newUser, BindingResult result, Model model,
             HttpSession session) {
         User user = userService.register(newUser, result);
         if (result.hasErrors()) { // ! If errors are found, redirect to the index page and display form errors
@@ -44,7 +44,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login(@Valid @ModelAttribute("newLogin") LoginCheck newLogin, BindingResult result, Model model,
+    public String login(@Valid @ModelAttribute LoginCheck newLogin, BindingResult result, Model model,
             HttpSession session) {
         User user = userService.login(newLogin, result);
         if (result.hasErrors() || user == null) { // ! If errors are found, OR user is equal to null, direct to the
@@ -79,7 +79,7 @@ public class UserController {
 
     // Update user settings
     @PutMapping("/settings")
-    public String updateSettings(@Valid @ModelAttribute("user") User user, BindingResult result, HttpSession session,
+    public String updateSettings(@Valid @ModelAttribute User user, BindingResult result, HttpSession session,
             Model model) {
         User sessionUser = (User) session.getAttribute("user");
         if (sessionUser == null) {

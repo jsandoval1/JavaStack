@@ -41,7 +41,7 @@ public class UserService {
     // * user Login method:
     public User login(LoginCheck newLoginObject, BindingResult result) {
         Optional<User> user = userRepository.findByEmail(newLoginObject.getEmail()); // Find user in the DB by email
-        if (!user.isPresent()) {
+        if (user.isEmpty()) {
             result.rejectValue("email", "logEmail", "Invalid credentials"); // Reject if NOT present
         } else if (!BCrypt.checkpw(newLoginObject.getPassword(), user.get().getPassword())) {
             result.rejectValue("password", "logPassword", "Invalid credentials"); // Reject if BCrypt password match
