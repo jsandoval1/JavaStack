@@ -1,0 +1,30 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "LetsdoitApplication",
+            "request": "launch",
+            "mainClass": "sandoval.john.letsdoit.LetsdoitApplication"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-LetsdoitApplication<letsdoit>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "sandoval.john.letsdoit.LetsdoitApplication",
+            "projectName": "letsdoit",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ServerApplication<server>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "sandoval.john.server.ServerApplication",
+            "projectName": "server",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
