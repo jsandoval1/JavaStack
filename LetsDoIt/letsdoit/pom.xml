@@ -11,6 +11,7 @@
 	<groupId>sandoval.john</groupId>
 	<artifactId>letsdoit</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war </packaging>
 	<name>letsdoit</name>
 	<description>Lets Do IT project</description>
 	<properties>
